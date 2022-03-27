@@ -7,21 +7,35 @@ const reader = readline.createInterface({
 
 
 
-reader.question("Please enter your password", function(input){
-	tokens = input.split(' ');
+reader.question("Please enter your username", function(input){
+	usertokens = input.split(' ');
 	
-password = tokens[0];
-passinput = String(tokens[1]);
+usernameinput = String(usertokens[1]);
 
 
-if (passinput.length<10){
-console.log('Please enter a password up to ten')
+if (usernameinput.length<10){
+console.log('Please enter a username up to ten')
+reader.close()
+}
+else if(usernameinput.length>=10){
+    reader.question(`Welcome ${usernameinput} Please enter a password`,function(passinput){
+
+passtokens = passinput.split(' ');
+	
+passwordinput = String(passtokens[1]);
+
+if(passinput.length<10){
+    console.log('Please enter a pass up to 10')
+    reader.close()
 }
 else if(passinput.length>=10){
-     console.log('Thank you for entering your password')
+console.log('Thank you have a nice day')
+reader.close()
+}
+    });
 }
 
 
 	// This line closes the connection to the command line interface.
-	reader.close()
+	
 });
